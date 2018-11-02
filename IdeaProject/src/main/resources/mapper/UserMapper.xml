@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
+        "http://mybatis.apache.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.elitesland.userdemo.dao.UserMapper">
+
+    <!-- 增加用户数据 -->
+    <!-- Integer insert(User user) -->
+    <insert id="insert"
+            parameterType="com.elitesland.userdemo.entity.User"
+            useGeneratedKeys="true"
+            keyProperty="id">
+        INSERT INTO user (
+        username, IDnum,
+        phone, email, birthday,age,
+        created_user, created_time,
+        modified_user, modified_time
+        ) VALUES (
+        #{username},#{IDnum},
+        #{phone}, #{email}, #{birthday},#{age},
+        #{createdUser}, #{createdTime},
+        #{modifiedUser}, #{modifiedTime}
+        )
+    </insert>
+
+
+    <!-- 根据用户名查询用户数据 -->
+    <!-- User findUserByUsername(String username) -->
+    <select id="findUserByUsername"
+            resultType="com.elitesland.userdemo.entity.User">
+
+        SELECT
+            id,
+            username,IDnum,
+            phone, email, birthday,age,
+            created_user AS createdUser,
+            created_time AS createdTime,
+            modified_user AS modifiedUser,
+            modified_time AS modifiedTime
+        FROM
+            user
+        WHERE
+            username=#{username}
+    </select>
+
+
+
+
+
+</mapper>

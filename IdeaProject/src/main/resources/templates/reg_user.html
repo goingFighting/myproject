@@ -1,0 +1,135 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>add User</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" type="text/css"
+          href="css/style.css" th:href="@{/css/style.css}" />
+    <script th:src="@{/js/jquery-3.1.1.min.js}"
+            src="../static/js/jquery-3.1.1.min.js"></script>
+</head>
+
+<body>
+<div id="wrap">
+    <div id="top_content">
+        <div id="header">
+
+            <div id="topheader">
+                <h1 id="title">
+                    <a href="#">Main</a>
+                </h1>
+            </div>
+            <div id="navigation">
+            </div>
+        </div>
+        <div id="content">
+            <p id="whereami">
+            </p>
+            <h1>
+                用户注册:
+            </h1>
+            <form action="handle_reg" method="post">
+                <table cellpadding="0" cellspacing="0" border="0"
+                       class="form_table">
+                    <tr>
+                        <td valign="middle" align="right">
+                            用户名:
+                        </td>
+                        <td valign="middle" align="left">
+                            <input type="text" class="inputgri" id="username" name="username"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td valign="middle" align="right">
+                            身份证号:
+                        </td>
+                        <td valign="middle" align="left">
+                            <input type="text" class="inputgri" id="IDnum" name="IDnum"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td valign="middle" align="right">
+                            手机号:
+                        </td>
+                        <td valign="middle" align="left">
+                            <input type="text" class="inputgri" id="phone" name="phone"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td valign="middle" align="right">
+                            邮箱:
+                        </td>
+                        <td valign="middle" align="left">
+                            <input type="text" class="inputgri" id="email" name="email"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td valign="middle" align="right">
+                            出生年月:
+                        </td>
+                        <td valign="middle" align="left">
+                            <input type="text" holdplace="例：2000-10-10" class="inputgri" id="birthday" name="birthday"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td valign="middle" align="right">
+                            年龄:
+                        </td>
+                        <td valign="middle" align="left">
+                            <input type="text" class="inputgri" id="age" name="age"/>
+                        </td>
+                    </tr>
+
+                </table>
+                <p>
+                    <input type="button" class="button" id="btn" value="注册 &raquo;"/>
+                </p>
+            </form>
+        </div>
+    </div>
+    <div id="footer">
+        <div id="footer_bg">
+            ABC@126.com
+        </div>
+    </div>
+</div>
+
+
+<script>
+
+     $("#btn").click(function(){
+        //通过输入框获取各项提交到服务器的数据
+        var username = $("#username").val();
+        var IDnum = $("#IDnum").val();
+        var phone = $("#email").val();
+        var email = $("#phone").val();
+        var birthday = $("#birthday").val();
+        var age = $("#age").val();
+        //处理注册的请求路径
+        //从：根/user/reg.do
+        //到：根/user/handle_reg.do
+        var url = "handle_reg";
+        //需要提交到处理器的数据
+        var data = "username="+username+"&IDnum="+IDnum+"&phone="+phone+"&email="+email+"&birthday="+birthday+"&age="+age;
+        //打桩测试
+        console.log("data="+data);
+        //提交ajax请求，并处理响应结果
+        $.ajax({
+            "url":url,
+            "data":data,
+            "dataType":"json",
+            "type":"POST",
+            "success":function(obj){
+                if(obj.state==1){
+                    alert("注册成功");
+                    location.href='login';
+                }else{
+                    alert("注册失败"+obj.message);
+                }
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
