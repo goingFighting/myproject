@@ -1,4 +1,4 @@
-package com.elitesland.userdemo.controller;
+﻿package com.elitesland.userdemo.controller;
 
 import com.elitesland.userdemo.entity.ResponseResult;
 import com.elitesland.userdemo.entity.User;
@@ -9,6 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+/**
+*@ author
+* 修改类头注释
+*/
 @Controller
 @RequestMapping("/user")
 public class UserController {
